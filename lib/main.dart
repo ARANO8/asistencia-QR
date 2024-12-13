@@ -1,4 +1,6 @@
+import 'package:asistencia_escuela_deportes/pages/main_pages/camera.dart';
 import 'package:asistencia_escuela_deportes/pages/main_pages/home.dart';
+import 'package:asistencia_escuela_deportes/pages/main_pages/profile.dart';
 import 'package:asistencia_escuela_deportes/pages/onboarding_login/login.dart';
 import 'package:asistencia_escuela_deportes/pages/onboarding_login/onboarding.dart';
 import 'package:asistencia_escuela_deportes/pages/onboarding_login/register.dart';
@@ -25,7 +27,9 @@ class MyApp extends StatelessWidget {
         '/onboarding': (context) => const OnboardingPage(),
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
-        '/home': (context) => const HomePage() // Define esta página
+        '/home': (context) => const HomePage(),
+        '/profile': (context) => const ProfilePage(),
+        '/camera': (context) =>  CameraScreen() // Define esta página
       },
     );
   }

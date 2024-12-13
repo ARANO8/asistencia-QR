@@ -30,24 +30,26 @@ class _HomePageState extends State<HomePage> {
         break;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF7FAF9),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                         Text(
+                        Text(
                           'Bienvenido',
                           style: TextStyle(
                             fontFamily: 'Poppins',
@@ -55,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.grey,
                           ),
                         ),
-                         Text(
+                        Text(
                           'Usuario',
                           style: TextStyle(
                             fontFamily: 'Poppins',
@@ -93,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [Color(0xFF9DCEFF), Color(0xFF92A3FD)],
+                      colors: [Color(0xFFEEA4CE), Color(0xFFC58BF2)],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
@@ -127,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                           const SizedBox(height: 20),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
+                              backgroundColor: const Color(0xFF84468E),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
                               ),
@@ -137,22 +139,26 @@ class _HomePageState extends State<HomePage> {
                               'Ver Más',
                               style: TextStyle(
                                 fontFamily: 'Poppins',
-                                color: Color(0xFF9DCEFF),
+                                color: Colors.white,
                               ),
                             ),
                           ),
                         ],
                       ),
                       CircularPercentIndicator(
-                        radius: 50,
-                        lineWidth: 10,
-                        percent: 0.8,
-                        progressColor: Colors.white,
+                        radius: 35,
+                        lineWidth: 12,
+                        percent: 0.21,
+                        animation: true,
+                        animateFromLastPercent: true,
+                        progressColor: const Color(0xFF6450A5),
+                        backgroundColor: const Color(0xFFF7F8F8),
                         center: const Text(
                           '20.1',
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 16,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -235,7 +241,6 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        
       ),
       bottomNavigationBar: Navbar(
         currentIndex: _currentIndex,
@@ -257,7 +262,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildResultCard(BuildContext context, String title, String subtitle, double progress) {
+  Widget _buildResultCard(
+      BuildContext context, String title, String subtitle, double progress) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Container(
@@ -304,7 +310,7 @@ class _HomePageState extends State<HomePage> {
                     lineHeight: 8,
                     percent: progress,
                     backgroundColor: Colors.grey[300],
-                    progressColor: const Color(0xFF9DCEFF),
+                    progressColor: const Color(0xFF6450A5),
                     barRadius: const Radius.circular(10),
                   ),
                 ],
@@ -316,5 +322,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  
 }

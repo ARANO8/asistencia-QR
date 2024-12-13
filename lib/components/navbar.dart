@@ -13,6 +13,7 @@ class Navbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: const Color(0xFFF7F8F8),
       currentIndex: currentIndex,
       onTap: onTap,
       items: const [
@@ -29,7 +30,7 @@ class Navbar extends StatelessWidget {
           label: '',
         ),
       ],
-      selectedItemColor: const Color(0xFF92A3FD),
+      selectedItemColor: const Color(0xFF6450A5),
       unselectedItemColor: Colors.grey,
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
