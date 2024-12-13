@@ -15,52 +15,55 @@ class _LoginPageState extends State<LoginPage> {
   bool _passwordVisible = false;
 
   Future<void> _loginUser() async {
-    final email = _emailController.text.trim();
-    final password = _passwordController.text.trim();
+  final email = _emailController.text.trim();
+  final password = _passwordController.text.trim();
 
-    if (email.isEmpty || password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Por favor, ingrese su correo y contraseña')),
-      );
-      return;
-    }
-
-    try {
-      final UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-
-      final User? user = userCredential.user;
-
-      if (user != null) {
-        // Verifica explícitamente el UID del usuario
-        print('Inicio de sesión exitoso: ${user.uid}');
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Inicio de sesión exitoso')),
-        );
-        Navigator.pushNamed(context, '/home');
-      } else {
-        throw Exception('Error: Usuario no válido');
-      }
-    } on FirebaseAuthException catch (e) {
-      String errorMessage;
-      if (e.code == 'user-not-found') {
-        errorMessage = 'No existe una cuenta con este correo.';
-      } else if (e.code == 'wrong-password') {
-        errorMessage = 'Contraseña incorrecta.';
-      } else {
-        errorMessage = 'Error: ${e.message}';
-      }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(errorMessage)),
-      );
-    } catch (e) {
-      print('Error inesperado: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Error inesperado al iniciar sesión')),
-      );
-    }
+  if (email.isEmpty || password.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Por favor, ingrese su correo y contraseña'),
+      ),
+    );
+    return;
   }
+
+  try {
+    final UserCredential userCredential = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+
+    final User? user = userCredential.user;
+    if (user != null) {
+      print('Inicio de sesión exitoso: ${user.uid}');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Inicio de sesión exitoso')),
+      );
+      Navigator.pushReplacementNamed(context, '/home');
+    } else {
+      throw FirebaseAuthException(
+        code: 'unknown',
+        message: 'No se pudo autenticar al usuario.',
+      );
+    }
+  } on FirebaseAuthException catch (e) {
+    String errorMessage;
+    if (e.code == 'user-not-found') {
+      errorMessage = 'No existe una cuenta con este correo.';
+    } else if (e.code == 'wrong-password') {
+      errorMessage = 'Contraseña incorrecta.';
+    } else {
+      errorMessage = 'Error: ${e.message}';
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(errorMessage)),
+    );
+  } catch (e) {
+    print('Error inesperado: $e');
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Error inesperado al iniciar sesión')),
+    );
+  }
+}
+
 
   @override
   void dispose() {
