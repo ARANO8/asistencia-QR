@@ -12,14 +12,14 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: const AlignmentDirectional(0, 0),
+    return SizedBox(
+      width: double.infinity, // Hace que el botón ocupe todo el ancho disponible
       child: Container(
         decoration: BoxDecoration(
           boxShadow: const [
             BoxShadow(
               blurRadius: 22,
-              color: Color.fromARGB(30, 149, 173,254), // Ajusta al color deseado
+              color: Color.fromARGB(30, 149, 173, 254), // Ajusta al color deseado
               offset: Offset(0, 10),
             ),
           ],

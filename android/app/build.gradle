@@ -3,11 +3,13 @@ plugins {
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.firebase:firebase-auth'
+    id 'com.google.firebase:firebase-core'
 }
 
 android {
     namespace = "com.example.asistencia_escuela_deportes"
-    compileSdk = 34
+    compileSdk = 33
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -24,7 +26,7 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 33
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
@@ -41,3 +43,4 @@ android {
 flutter {
     source = "../.."
 }
+apply plugin: 'com.google.gms.google-services'
